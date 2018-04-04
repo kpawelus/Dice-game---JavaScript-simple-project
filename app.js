@@ -17,4 +17,8 @@ activePlayer = 0;
 //activePlayer = 1 for second player
 dice = Math.floor(Math.random() * 6) + 1;
 
-document.querySelector('current-0').textContent = dice;
+document.querySelector('#current-' + activePlayer).textContent = dice;
+//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
+
+document.querySelector('.dice').style.display = 'none';
+//hiding dice at the beginning of the game
