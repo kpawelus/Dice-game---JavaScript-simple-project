@@ -17,3 +17,4 @@ activePlayer = 0;
 //activePlayer = 1 for second player
 dice = Math.floor(Math.random() * 6) + 1;
 
+document.querySelector('current-0').textContent = dice;
