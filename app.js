@@ -34,7 +34,21 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 	diceDOM.src = 'dice-' + dice + '.png';
 	
 	//3. Update the round score but only IF generated number is not 1 
-	document.querySelector('#current-' + activePlayer).textContent = dice;
-	//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
+	if (dice > 1) {
+		//add score
+		roundScore += dice;
+		document.querySelector('#current-' + activePlayer).textContent = roundScore;
+		//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
+	}else {
+		//next player (I will use ternary operator)
+		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+		//     IF                  THEN                     ELSE
+		roundScore = 0;
+		//new player is playing now so round score for him must start form 0
+		
+		document.getElementById('current-0').textContent = '0';
+		document.getElementById('current-1').textContent = '0';
+		//all round scores must be changed to 0, new round has began
+	}
 	
 });
