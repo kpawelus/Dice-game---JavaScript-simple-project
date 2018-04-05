@@ -19,6 +19,11 @@ activePlayer = 0;
 document.querySelector('.dice').style.display = 'none';
 //hiding dice at the beginning of the game
 
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
 document.querySelector('.btn-roll').addEventListener('click', function() {
 	//1. Generate random number (we need dice variable here so I took it form up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
 	var dice = Math.floor(Math.random() * 6) + 1;
