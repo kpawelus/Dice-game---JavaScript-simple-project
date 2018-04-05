@@ -22,3 +22,7 @@ document.querySelector('#current-' + activePlayer).textContent = dice;
 
 document.querySelector('.dice').style.display = 'none';
 //hiding dice at the beginning of the game
+
+document.querySelector('.btn-roll').addEventListener('click', function() {
+	
+});
