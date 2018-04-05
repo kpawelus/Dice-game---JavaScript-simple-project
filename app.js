@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0,0];
 roundScore = 0;
@@ -25,7 +25,7 @@ document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-	//1. Generate random number (we need dice variable here so I took it form up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
+	//1. Generate random number (we need dice variable here so I took it from up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
 	var dice = Math.floor(Math.random() * 6) + 1;
 	
 	//2. Display the result
@@ -57,5 +57,30 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		document.querySelector('.dice').style.display = 'none';
 		//hide dice image if 1 been generated
 	}
+});
+
+document.querySelector('.btn-hold').addEventListener('click', function() {
+	//1. Add CURRENT score to the GLOBAL score
+	scores[activePlayer] += roundScore;
 	
+	//2. Update UI
+	document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+	
+	//3. Check if active player won the game
+	
+	//nest player
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	//     IF                  THEN                     ELSE
+	roundScore = 0;
+	//new player is playing now so round score for him must start form 0
+	
+	document.getElementById('current-0').textContent = '0';
+	document.getElementById('current-1').textContent = '0';
+	//all round scores must be changed to 0, new round has began
+	
+	document.querySelector('.player-0-panel').classList.toggle('active');
+	document.querySelector('.player-1-panel').classList.toggle('active');
+	//change interface of active player from one player to another
+	
+	document.querySelector('.dice').style.display = 'none';
 });
