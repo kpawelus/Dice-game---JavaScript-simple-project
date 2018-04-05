@@ -53,6 +53,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		document.querySelector('player-0-panel').classList.toggle('active');
 		document.querySelector('player-1-panel')classList.toggle('active');
 		//change interface of active player from one player to another
+		
+		document.querySelector('.dice').style.display = 'none';
+		//hide dice image if 1 been generated
 	}
 	
 });
