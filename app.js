@@ -50,8 +50,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		document.getElementById('current-1').textContent = '0';
 		//all round scores must be changed to 0, new round has began
 		
-		document.querySelector('player-0-panel').classList.toggle('active');
-		document.querySelector('player-1-panel')classList.toggle('active');
+		document.querySelector('.player-0-panel').classList.toggle('active');
+		document.querySelector('.player-1-panel').classList.toggle('active');
 		//change interface of active player from one player to another
 		
 		document.querySelector('.dice').style.display = 'none';
