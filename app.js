@@ -54,3 +54,22 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	//3. Check if active player won the game
 	nextPlayer();
 });
+
+function nextPlayer() {
+	//ternary operator
+	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+	//     IF                  THEN                     ELSE
+	roundScore = 0;
+	//new player is playing now so round score for him must start form 0
+	
+	document.getElementById('current-0').textContent = '0';
+	document.getElementById('current-1').textContent = '0';
+	//all round scores must be changed to 0, new round has began
+	
+	document.querySelector('.player-0-panel').classList.toggle('active');
+	document.querySelector('.player-1-panel').classList.toggle('active');
+	//change interface of active player from one player to another
+	
+	document.querySelector('.dice').style.display = 'none';
+	//hide dice after each round
+}
