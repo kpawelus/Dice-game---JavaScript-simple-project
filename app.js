@@ -9,45 +9,50 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-	//1. Generate random number (we need dice variable here so I took it from up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
-	var dice = Math.floor(Math.random() * 6) + 1;
-	
-	//2. Display the result
-	var diceDOM = document.querySelector('.dice');
-	diceDOM.style.display = 'block';
-	diceDOM.src = 'dice-' + dice + '.png';
-	
-	//3. Update the round score but only IF generated number is not 1 
-	if (dice > 1) {
-		//add score
-		roundScore += dice;
-		document.querySelector('#current-' + activePlayer).textContent = roundScore;
-		//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
-	}else {
-		nextPlayer();
+	if (gamePlaying) {
+		//1. Generate random number (we need dice variable here so I took it from up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
+		var dice = Math.floor(Math.random() * 6) + 1;
+		
+		//2. Display the result
+		var diceDOM = document.querySelector('.dice');
+		diceDOM.style.display = 'block';
+		diceDOM.src = 'dice-' + dice + '.png';
+		
+		//3. Update the round score but only IF generated number is not 1 
+		if (dice > 1) {
+			//add score
+			roundScore += dice;
+			document.querySelector('#current-' + activePlayer).textContent = roundScore;
+			//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
+		}else {
+			nextPlayer();
+		}
 	}
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
-	//1. Add CURRENT score to the GLOBAL score
-	scores[activePlayer] += roundScore;
-	
-	//2. Update UI
-	document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-	
-	//3. Check if active player won the game
-	if (scores[activePlayer] >= 100) {
-		document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
-		document.querySelector('.dice').style.display = 'none';
-		document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-		document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-	}else {
-		nextPlayer();
+	if (gamePlaying) {
+		//1. Add CURRENT score to the GLOBAL score
+		scores[activePlayer] += roundScore;
+		
+		//2. Update UI
+		document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+		
+		//3. Check if active player won the game
+		if (scores[activePlayer] >= 100) {
+			document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
+			document.querySelector('.dice').style.display = 'none';
+			document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+			document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+			gamePlaying = false;
+		}else {
+			nextPlayer();
+		}
 	}
 });
 
@@ -76,6 +81,7 @@ function init() {
 	scores = [0,0];
 	roundScore = 0;
 	activePlayer = 0; 
+	gamePlaying = true;
 	//activePlayer = 1 for second player
 	
 	document.querySelector('.dice').style.display = 'none';
