@@ -40,22 +40,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		document.querySelector('#current-' + activePlayer).textContent = roundScore;
 		//this is setter because it sets the vaule, getter is a variable in which we store already existing value so we can print it later
 	}else {
-		//next player (I will use ternary operator)
-		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-		//     IF                  THEN                     ELSE
-		roundScore = 0;
-		//new player is playing now so round score for him must start form 0
-		
-		document.getElementById('current-0').textContent = '0';
-		document.getElementById('current-1').textContent = '0';
-		//all round scores must be changed to 0, new round has began
-		
-		document.querySelector('.player-0-panel').classList.toggle('active');
-		document.querySelector('.player-1-panel').classList.toggle('active');
-		//change interface of active player from one player to another
-		
-		document.querySelector('.dice').style.display = 'none';
-		//hide dice image if 1 been generated
+		nextPlayer();
 	}
 });
 
@@ -67,8 +52,11 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 	
 	//3. Check if active player won the game
-	
-	//nest player
+	nextPlayer();
+});
+
+function nextPlayer() {
+	//ternary operator
 	activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
 	//     IF                  THEN                     ELSE
 	roundScore = 0;
@@ -83,4 +71,5 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	//change interface of active player from one player to another
 	
 	document.querySelector('.dice').style.display = 'none';
-});
+	//hide dice after each round
+}
