@@ -11,18 +11,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0; 
-//activePlayer = 1 for second player
-
-document.querySelector('.dice').style.display = 'none';
-//hiding dice at the beginning of the game
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
 	//1. Generate random number (we need dice variable here so I took it from up there and declared it here, it will be available only in this anonymous function due to the scoping chain)
@@ -79,4 +68,21 @@ function nextPlayer() {
 	
 	document.querySelector('.dice').style.display = 'none';
 	//hide dice after each round
+}
+
+document.querySelector().addEventListener('click', init); //I don't need to use () with init function because that way function would be launched immediatley, instead of that I just said to event listener that if event happens (click on button) than and ONLY than function must me launched
+
+function init() {
+	scores = [0,0];
+	roundScore = 0;
+	activePlayer = 0; 
+	//activePlayer = 1 for second player
+	
+	document.querySelector('.dice').style.display = 'none';
+	//hiding dice image
+	
+	document.getElementById('score-0').textContent = '0';
+	document.getElementById('score-1').textContent = '0';
+	document.getElementById('current-0').textContent = '0';
+	document.getElementById('current-1').textContent = '0';
 }
