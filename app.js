@@ -70,7 +70,7 @@ function nextPlayer() {
 	//hide dice after each round
 }
 
-document.querySelector().addEventListener('click', init); //I don't need to use () with init function because that way function would be launched immediatley, instead of that I just said to event listener that if event happens (click on button) than and ONLY than function must me launched
+document.querySelector('.btn-new').addEventListener('click', init); //I don't need to use () with init function because that way function would be launched immediatley, instead of that I just said to event listener that if event happens (click on button) than and ONLY than function must me launched
 
 function init() {
 	scores = [0,0];
